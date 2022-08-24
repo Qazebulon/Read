@@ -8,7 +8,7 @@ Reading Tutor Python App
     sudo apt install python3-pip  
     python3 -m pip install -U pygame --user  
     sudo apt install git  
-    git clone https://github.com/Qazebulon/Tutor.git  
+    git clone https://github.com/Qazebulon/Read.git  
 
 # Run the program
 
