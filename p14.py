@@ -6,9 +6,6 @@
 from random import randint
 import pygame, sys, os
 from pygame.locals import *
-pygame.init()
-DisplaySurface = pygame.display.set_mode((1000, 700))
-pygame.display.set_caption('Reading Tutor')
 #-----------------------------------------------------------------------------------------
 # Enter Book Coode:							***** (0 / 3)
 fileFound = False
@@ -38,6 +35,11 @@ while ((fileFound == False) and (newStudent==False)):
         answ = input('New Student? (y/n): ')
         if ((answ=='y') or (answ=='Y')):
             newStudent=True
+#------------------------------------------------------------------------------------------
+# Initiate New Window:
+pygame.init()
+DisplaySurface = pygame.display.set_mode((1000, 700))
+pygame.display.set_caption('Reading Tutor')
 #------------------------------------------------------------------------------------------
 # Define Colors:
 BLACK=(0,0,0)
