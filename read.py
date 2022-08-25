@@ -11,7 +11,7 @@ from pygame.locals import *
 fileFound = False
 while (fileFound == False):
     psetName = input("Enter Problem Set Code: ")	# Slect Problem Set (GEAH)
-    psetFile = 'R1_'+psetName+'_0'
+    psetFile = 'courses/R1_'+psetName+'_0'
     try:						# Check if existing file Found
         f = open(psetFile, 'r')
         f.close()
@@ -25,7 +25,7 @@ newStudent = False
 fileFound = False
 while ((fileFound == False) and (newStudent==False)):
     studentName = input("Enter Student's Name: ")	# Get Student's Infornation
-    fileName = 'R1_'+psetName+'_'+studentName
+    fileName = 'data/R1_'+psetName+'_'+studentName
     try:						# Check if existing file Found
         f = open(fileName, 'r')
         f.close()
@@ -146,7 +146,7 @@ while True: # Main Loop
     while (echo):
         # 5) speak the selected word
         index = select
-        pygame.mixer.music.load ('w'+words[index]+'.wav')	# load sound
+        pygame.mixer.music.load ('assets/w'+words[index]+'.wav')	# load sound
         pygame.mixer.music.play (0)				# play sound once
         #---------------------------------------------------------------------------------
         # 6) Events:  wait for mouse entry: lookup word index, using key index
@@ -166,7 +166,7 @@ while True: # Main Loop
                     if (mouselect<level):
                         echo = False
                         # Play sound tied to each key: [Sams Python for Pi  (pp.517-521)]
-                        pygame.mixer.music.load ('w'+words[mouselect]+'.wav') # load sound
+                        pygame.mixer.music.load ('assets/w'+words[mouselect]+'.wav') # load sound
                         pygame.mixer.music.play (0)			 # play sound once
                         pygame.time.wait(1000)
                         #-----------------------------------------------------------------
