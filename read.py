@@ -4,14 +4,24 @@
 #-----------------------------------------------------------------------------------------
 #Pygame setup: [Making Games with Python & Pygame, pp. 8-12]
 from random import randint
+from os import listdir
+from os.path import isfile, join
 import pygame, sys, os
 from pygame.locals import *
+#-----------------------------------------------------------------------------------------
+# List Book Coodes:
+mypath = "problem_sets/";
+onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+print("Available Problem Set Codes:");
+for problem_set in onlyfiles:
+    code = problem_set[3:-2];
+    print(code);
 #-----------------------------------------------------------------------------------------
 # Enter Book Coode:							***** (0 / 3)
 fileFound = False
 while (fileFound == False):
     psetName = input("Enter Problem Set Code: ")	# Slect Problem Set (GEAH)
-    psetFile = 'courses/R1_'+psetName+'_0'
+    psetFile = 'problem_sets/R1_'+psetName+'_0'
     try:						# Check if existing file Found
         f = open(psetFile, 'r')
         f.close()
@@ -32,7 +42,7 @@ while ((fileFound == False) and (newStudent==False)):
         fileFound = True
     except IOError:
         fileFound = False
-        answ = input('New Student? (y/n): ')
+        answ = input('New Student for this Problem Set? (y/n): ')
         if ((answ=='y') or (answ=='Y')):
             newStudent=True
 #------------------------------------------------------------------------------------------
