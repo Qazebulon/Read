@@ -46,9 +46,29 @@ while ((fileFound == False) and (newStudent==False)):
         if ((answ=='y') or (answ=='Y')):
             newStudent=True
 #------------------------------------------------------------------------------------------
-# Initiate New Window:
+# Initiate Dispay-Grid Dimensions:
+xn = 6          # Set Columns
+xl = 116        # Left Margin
+xi = 211        # Column Width (was 192)
+xm = 15         # X mouse correction
+yt = 40         # Top Margin
+yi = 76         # Row Height (was 62)
+ym = 15         # Y mouse correction
+ft = 60         # Font Size
+# Larger Buttons:
+if (len(psetName) < 4):
+    xn = 10     # Set Columns
+    xl = 75     # Left Margin (1366-1280 = 86) (86+128)/2=\ wrong?
+    xi = 128    # Column Width
+    xm = 15     # X mouse correction
+    yt = 55     # Top Margin
+    yi = 97     # Row Height
+    ym = 28     # Y mouse undershoot range
+    ft = 75     # Font Size
+#------------------------------------------------------------------------------------------
+# Switch to Graphics Screen:
 pygame.init()
-DisplaySurface = pygame.display.set_mode((1000, 700))
+DisplaySurface = pygame.display.set_mode((1300, 700))
 pygame.display.set_caption('Reading Tutor')
 #------------------------------------------------------------------------------------------
 # Define Colors:
@@ -137,10 +157,10 @@ while True: # Main Loop
     FontObject = pygame.font.Font(None, 60)
     TextSurfaceObject = FontObject.render(fileName, True, WHITE, BLUE)
     TextRectObject = TextSurfaceObject.get_rect()
-    TextRectObject.bottomright = (985,695)
+    TextRectObject.bottomright = (1285,695)
     DisplaySurface.blit(TextSurfaceObject,TextRectObject)
     for n in range (0,level):
-        FontObject = pygame.font.Font(None, 60)
+        FontObject = pygame.font.Font(None, ft)
         if (prob[scram[n]] == 0):
             BCOLOR = GREEN
         else:
@@ -148,7 +168,8 @@ while True: # Main Loop
         TextSurfaceObject = FontObject.render(' '+words[scram[n]]+' ', True, BCOLOR, WHITE)
         TextRectObject = TextSurfaceObject.get_rect()
         #TextRectObject.center = (110 + (int(n/11))*192,40 + (n % 11) * 62)     # Columns
-        TextRectObject.center = (110 + (n % 5)*192,40 + int(n / 5) * 62)        # Rows
+        #TextRectObject.center = (110 + (n % 5)*192,40 + int(n / 5) * 62)       # Rows
+        TextRectObject.center = (xl + (n % xn)*xi,yt + int(n / xn) * yi)        # Rows 
         DisplaySurface.blit(TextSurfaceObject,TextRectObject)
 #-------------------------------------------------------------------------------------
     # Echo loop:
@@ -167,7 +188,9 @@ while True: # Main Loop
                     waiting = False
                     mousex, mousey = event.pos
                     #index = int((mousey-15)/62) + 11*int((mousex-15)/192)	# Columns
-                    index = 5*int((mousey-15)/62) + int((mousex-15)/192)	# Rows
+                    #index = 5*int((mousey-15)/62) + int((mousex-15)/192)       # Rows
+                    index = xn*int((mousey-ym)/yi) + int((mousex-xm)/xi)        # Rows
+
                     try:
                         mouselect = scram[index]     # "mouselect" = mouse-selected answer
                     except IndexError:
